@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            height: 100%;
+            width: 100%;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .spinner {
+            background-color: black;
+            height: 1px;
+            width: 10px;
+            margin-bottom: 1px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .MainContainer {
+            background-color: lightgreen;
+            height: 143px;
+            width: 350px;
+            margin: 50px auto;
+            border: 1px solid green;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #slidePage {
+            background-color: black;
+            height: 100%;
+            width: 460px;
+            transform: translateX(-460px);
+            transition: transform 250ms ease-in-out;
+
+        }
+
+        #clicks:checked~#slidePage {
+            transform: translateX(0px);
+
+
+        }
+
+        .heading {
+            margin-left: 17px;
+        }
+
+        .inputContainer input {
+            width: 230px;
+            height: 36px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-top: 37px;
+            margin-left: 13px;
+            padding-left: 14px;
+        }
+
+        .CopyPaster {
+            margin-left: 10px;
+            height: 25px;
+            background-color: lightgreen;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .btnElement button {
+            margin-left: 13px;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            height: 25px;
+            background-color: lightgreen;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #Thanking {
+            display: none;
+            margin: 50px auto;
+            height: 20px;
+            width: 340px;
+            margin-top: -23px;
+        }
+
+        .CopyPaster:hover {
+            background-color: rgb(147, 185, 75);
+        }
+
+        #btn:hover {
+            background-color: rgb(147, 185, 75);
+        }
+
+        #clear:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="MainContainer">
+        <div class="inputContainer"> <input type="text" id="input" placeholder="create password"><button id="paster"
+                class="CopyPaster">Copy</button></div>
+        <div class="btnElement"><button id="btn">Generate</button><button id="clear">Clear</button></div>
+    </div>
+    <div id="slidePage"></div>
+    <div id="Thanking">
+        Thank You For Using Our Service!</div>
+
+</body>
+
+
+<!-- LETS START WITH JS -->
+<script>
+
+    // ALL VARIABLES
+    btnEl = document.getElementById("btn");
+    inpoot = document.getElementById("input");
+    CopyButton = document.getElementById("paster");
+    const alertContainer = document.querySelector(".alert-Container");
+    const clearEl = document.getElementById("clear");
+
+    clear.addEventListener("click", () => {
+        inpoot.value = "";
+    })
+
+    //generate button
+    btnEl.addEventListener("click", () => {
+        createPassword();
+        Thanking=document.getElementById("Thanking").style.display="block";
+    });
+
+
+    //copy button
+    CopyButton.addEventListener("click", () => {
+        copyPassword();
+        if (inpoot.value) {
+            alert("Password Copied!"); opuiguvovpihiyvh
+        }
+        else {
+            alert("First Generate The Password!")
+        }
+    });
+
+    //creation of password
+    function createPassword() {
+        const chars = "1234567890abcdefghijklmnopqrstuvwxyz";
+        const passwordLength = 14;
+        let password = "";
+        for (let index = 0; index < passwordLength; index++) {
+            const randomNum = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNum, randomNum + 1);
+        }
+        inpoot.value = password;
+    }
+
+
+    //for copy pste function
+    function copyPassword() {
+        inpoot.select();
+        inpoot.setSelectionRange(0, 9999);
+        navigator.clipboard.writeText(inpoot.value);
+    }
+
+    //END WITH JS!!
+</script>
+
+</html>
